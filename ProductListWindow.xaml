@@ -1,0 +1,23 @@
+﻿<Window x:Class="WSR3.ProductListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WSR3"
+        xmlns:viewModels="clr-namespace:WSR3.ViewModels"
+        mc:Ignorable="d"
+        Title="ProductListWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:WSR3DataSet x:Key="wSR3DataSet"/>
+        <CollectionViewSource x:Key="productViewSource" Source="{Binding Product, Source={StaticResource wSR3DataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource productViewSource}">
+        <ListBox ItemsSource="{Binding}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:ProductCard/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
